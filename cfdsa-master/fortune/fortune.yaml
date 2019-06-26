@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+
+metadata:
+  name: fortune-pod
+  namespace: default # Default is 'default' or it can be specified during deployment
+  labels:
+    app.kubernetes.io/name: fortune-pod
+    app.kubernetes.io/version: "v1"
+
+spec:
+  containers:
+  - name: fortune
+    image: staelen/fortune
+    imagePullPolicy: Always
+    env:
+    - name: APP_PORT
+      value: "3000"
+    ports: 
+    - name: fortune-port
+      containerPort: 3000

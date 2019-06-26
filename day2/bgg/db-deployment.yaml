@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: bgg-db-deployment
+  namespace: bgg
+
+spec:
+  replicas: 1
+  
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: bgg-db-pod
+  
+  template:
+    metadata:
+      name: bgg-db-pod
+      labels:
+        app.kubernetes.io/name: bgg-db-pod
+        app.kubernetes.io/version: "v1"
+    
+    spec:
+      containers:
+      - name: bgg-db
+        image: stackupiss/bgg-db:v1
+        imagePullPolicy: Always
+        ports: 
+        - name: bgg-db-port
+          containerPort: 3306

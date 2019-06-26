@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: bgg-app-deployment
+  namespace: bgg
+
+spec:
+  replicas: 4
+  
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: bgg-app-pod
+  
+  template:
+    metadata:
+      name: bgg-app-pod
+      labels:
+        app.kubernetes.io/name: bgg-app-pod
+        app.kubernetes.io/version: "v2"
+    
+    spec:
+      containers:
+      - name: bgg-app
+        image: stackupiss/bgg-app:v2
+        imagePullPolicy: Always
+        env:
+        - name: BGG_DB_HOST
+          value: bgg-db-service.bgg.svc.cluster.local
+        ports: 
+        - name: bgg-app-port
+          containerPort: 3000
