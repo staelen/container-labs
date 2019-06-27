@@ -1,0 +1,20 @@
+# Default values for exchange-rate-chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: balanus/exapp
+  tag: v1
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: NodePort
+  port: 35000
+
+apiKey: "50e5dc615514f767e6570da2787f5a57462bce321dac874e8bd5cd06a1fc66c2"

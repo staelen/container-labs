@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: bgg-app-service-v2
+  namespace: bgg
+  labels:
+    name: bgg-app-service
+    version: v2
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: bgg-app-pod
+    app.kubernetes.io/version: "v2"
+  ports:
+  - name: bgg-app-service-port-v2
+    port: 80
+    targetPort: bgg-app-port-v2

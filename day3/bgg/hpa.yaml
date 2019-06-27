@@ -1,0 +1,15 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+
+metadata:
+  name: bgg-app-hpa
+  namespace: bgg
+
+spec:
+  minReplicas: 2
+  maxReplicas: 6
+  targetCPUUtilizationPercentage: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: bgg-app-deployment-v1

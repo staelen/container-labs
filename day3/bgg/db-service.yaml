@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: bgg-db-service
+  namespace: bgg
+  labels:
+    name: bgg-db-service
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: bgg-db-pod
+  ports:
+  - name: bgg-db-service-port
+    port: 3306
+    targetPort: bgg-db-port
