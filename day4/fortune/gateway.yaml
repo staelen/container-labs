@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+
+metadata:
+  name: fortune-gateway
+  namespace: fortune
+
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      name: http-port
+      number: 80
+      protocol: HTTP
+    hosts:
+    - fortune.139.59.222.252.nip.io
